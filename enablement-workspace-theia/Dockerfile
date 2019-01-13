@@ -22,10 +22,13 @@ chmod +x /usr/local/bin/jq
 # Set the JAVA_HOME variable to make it clear where Java is located
 ENV JAVA_HOME /usr/lib/jvm/java
 
-ADD https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz .
-RUN tar xvf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz && \
-  mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /usr/local/bin && \
-  rm -rf openshift-origin*
+# Install OpenShift Client
+RUN curl https://mirror.openshift.com/pub/openshift-v3/clients/3.11.66/linux/oc.tar.gz | tar -C /usr/local/bin/ -xzf -
+
+# Install last Ansible version
+
+RUN yum install epel-release -y && \
+    yum install ansible -y
 
 ## User account
 RUN useradd -ms /bin/bash -d /home/theia theia && \
