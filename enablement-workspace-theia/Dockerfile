@@ -23,7 +23,7 @@ chmod +x /usr/local/bin/jq
 ENV JAVA_HOME /usr/lib/jvm/java
 
 # Add Let's Encrypt CA to OS trsuted store
-RUN curl -O /etc/pki/ca-trust/source/anchors/lets-encrypt-x3-cross-signed.crt https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt && \
+RUN curl -o /etc/pki/ca-trust/source/anchors/lets-encrypt-x3-cross-signed.crt https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt && \
     update-ca-trust extract
 
 # Install OpenShift Client
